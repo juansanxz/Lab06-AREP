@@ -13,9 +13,15 @@ public class RemoteLogServiceInvoker {
         get_URL = invokeUrl;
     }
 
-    public String invoke(String[] args) throws IOException {
+    public String invoke(String msg) throws IOException {
 
-        URL obj = new URL(get_URL);
+        URL obj;
+        if(msg != null) {
+            obj = new URL(get_URL + "?msg=" + msg);
+        } else {
+            obj = new URL(get_URL);
+        }
+
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);

@@ -9,7 +9,7 @@ import static spark.Spark.staticFileLocation;
  */
 public class LogServerFacade
 {
-    private static final String LOG_SERVICE_URL = "http://localhost:5000/logservice";
+    private static final String LOG_SERVICE_URL = "http://localhost:5001/logservice";
     public static void main( String[] args )
     {
         staticFileLocation("/public");
@@ -18,7 +18,7 @@ public class LogServerFacade
 
         get("/logservicefacade", (req, res) -> {
             res.type("application/json");
-            return remoteLogServiceInvoker.invoke(args) ;
+            return remoteLogServiceInvoker.invoke(req.queryParams("msg")) ;
         });
     }
 }
