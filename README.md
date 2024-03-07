@@ -1,6 +1,6 @@
 # TALLER DE TRABAJO INDIVIDUAL EN PATRONES ARQUITECTURALES
 A continuación, se construirá una aplicación con la siguiente arquitectura, y se debe desplegar en AWS usando EC2 y Docker:  
-![img.png](img.png)  
+![img.png](img/img.png)  
 
 ## Autor
 * **Juan Felipe Sánchez Pérez**
@@ -39,12 +39,12 @@ docker run -d --network=my_network -p 35000:46000 --name logservicefacade juansa
 ```
 
 4. Una vez creados los contenedores con las imágenes de docker hub, se obeservará en docker algo similar:  
-![img_3.png](img_3.png)  
+![img_3.png](img/img_3.png)  
 
 5. ingrese a la URL `http://localhost:35000/formulario.html` y compruebe el funcionamiento de la aplicación:  
 Ingrese un mensaje, y haga click en el botón, para traer los últimos 10 mensajes almacenados en la base de datos, y la hora en que fueron guardados.  
-![img_1.png](img_1.png)  
-![img_2.png](img_2.png)  
+![img_1.png](img/img_1.png)  
+![img_2.png](img/img_2.png)  
 
 
 ## Decisiones de diseño
@@ -67,9 +67,9 @@ Para el proceso de virtualización:
 ## Despliegue
 Para realizar el despliegue, se creó una instancia de EC2 en amazon, con la imagen del sistema operativo Linux y con una arquitectura de 64 bits (Arm). Posteriormente, se estableció una conexión mediante el protocolo _SSH_, y se crearon los contenedores, tal como se indica en la seccion _Intalación y uso_.  
 Una vez instanciados los contenedores, al ejecutar el comando `docker ps -a` deberá observar que se crearon exitosamente:  
-![img_4.png](img_4.png)  
+![img_4.png](img/img_4.png)  
 Luego de agregar una regla de entrada en el grupo de seguridad para permitir el tráfico por el puerto _35000_, ingresamos la URL compuesta por el dominio de la instancia de EC2 y el puerto indicado anteriormente, junto al recurso que se desea solicitar, comprobando el funcionamiento adecuado del despliegue:  
-![img_5.png](img_5.png)  
+![img_5.png](img/img_5.png)  
 En el siguiente video, se observa el despliegue hecho de forma exitosa, y el funcionamiento del algoritmo de balanceo de carga Round Robin. 
 Primero, se envía el mensaje `1`, y con ayuda del comando `docker logs logservice1`, se determina que fue esta instancia la que se encargó de atender la solicitud. Posteriormente, al enviar el mensaje `2`, nuevamente se ejecuta el comando pero ahora para revisar los logs del contenedor `logservice2`, evidenciando que fue este quien recibió y atendió la petición. Lo mismo sucede con la instancia `logservice3`. Viendo esto, se comprueba que el despliegue se realizó satisfactoriamente, y que se implementó adecuadamente el algoritmo de balanceo de carga Round Robin.  
 [![](https://markdown-videos.deta.dev/youtube/-6VPw1sdyl8)](https://youtu.be/-6VPw1sdyl8?si=6KgENaIJyFlmbDrJ)
@@ -77,7 +77,6 @@ Primero, se envía el mensaje `1`, y con ayuda del comando `docker logs logservi
 
 ## Build
 * Maven - Administración de dependencias
-
 
 ## Versión
 1.0
