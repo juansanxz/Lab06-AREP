@@ -72,7 +72,7 @@ Luego de agregar una regla de entrada en el grupo de seguridad para permitir el 
 ![img_5.png](img/img_5.png)  
 En el siguiente video, se observa el despliegue hecho de forma exitosa, y el funcionamiento del algoritmo de balanceo de carga Round Robin. 
 Primero, se envía el mensaje `1`, y con ayuda del comando `docker logs logservice1`, se determina que fue esta instancia la que se encargó de atender la solicitud. Posteriormente, al enviar el mensaje `2`, nuevamente se ejecuta el comando pero ahora para revisar los logs del contenedor `logservice2`, evidenciando que fue este quien recibió y atendió la petición. Lo mismo sucede con la instancia `logservice3`. Viendo esto, se comprueba que el despliegue se realizó satisfactoriamente, y que se implementó adecuadamente el algoritmo de balanceo de carga Round Robin.  
-[![](https://markdown-videos.deta.dev/youtube/-6VPw1sdyl8)](https://youtu.be/-6VPw1sdyl8?si=6KgENaIJyFlmbDrJ)
+https://youtu.be/-6VPw1sdyl8?si=6KgENaIJyFlmbDrJ
 
 
 ## Build
