@@ -8,18 +8,24 @@ import java.net.URL;
 
 public class RemoteLogServiceInvoker {
     private static final String USER_AGENT = "Mozilla/5.0";
-    private String get_URL = "";
-    public RemoteLogServiceInvoker(String invokeUrl) {
+    private String[] get_URL = {};
+    private int selectecService = 0;
+    public RemoteLogServiceInvoker(String[] invokeUrl) {
         get_URL = invokeUrl;
     }
 
     public String invoke(String msg) throws IOException {
 
         URL obj;
+        if (selectecService > 2){
+            selectecService = 0;
+        }
+
         if(msg != null) {
-            obj = new URL(get_URL + "?msg=" + msg);
+            obj = new URL(get_URL[selectecService] + "?msg=" + msg);
+            selectecService = selectecService + 1;
         } else {
-            obj = new URL(get_URL);
+            obj = new URL(get_URL[selectecService]);
         }
 
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
